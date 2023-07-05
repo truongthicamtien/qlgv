@@ -1,0 +1,67 @@
+--------------------------------------------------------
+--  File created - Wednesday-July-05-2023   
+--------------------------------------------------------
+-- Unable to render TABLE DDL for object THUCTAP.NHOMCONGVIEC with DBMS_METADATA attempting internal generator.
+CREATE TABLE NHOMCONGVIEC 
+(
+  N_CV_ID NUMBER NOT NULL 
+, N_CV_TEN VARCHAR2(255 BYTE) 
+, CONSTRAINT NHOMCONGVIEC_PK PRIMARY KEY 
+  (
+    N_CV_ID 
+  )
+  USING INDEX 
+  (
+      CREATE UNIQUE INDEX NHOMCONGVIEC_PK ON NHOMCONGVIEC (N_CV_ID ASC) 
+      LOGGING 
+      TABLESPACE USERS 
+      PCTFREE 10 
+      INITRANS 2 
+      STORAGE 
+      ( 
+        INITIAL 65536 
+        NEXT 1048576 
+        MINEXTENTS 1 
+        MAXEXTENTS UNLIMITED 
+        BUFFER_POOL DEFAULT 
+      ) 
+      NOPARALLEL 
+  )
+  ENABLE 
+) 
+LOGGING 
+TABLESPACE USERS 
+PCTFREE 10 
+INITRANS 1 
+STORAGE 
+( 
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1 
+  MAXEXTENTS UNLIMITED 
+  BUFFER_POOL DEFAULT 
+) 
+NOCOMPRESS 
+NOPARALLEL
+REM INSERTING into THUCTAP.NHOMCONGVIEC
+SET DEFINE OFF;
+Insert into THUCTAP.NHOMCONGVIEC (N_CV_ID,N_CV_TEN) values (1,'Lên K? ho?ch');
+Insert into THUCTAP.NHOMCONGVIEC (N_CV_ID,N_CV_TEN) values (2,'L?p trình');
+Insert into THUCTAP.NHOMCONGVIEC (N_CV_ID,N_CV_TEN) values (3,'Xây d?ng database');
+Insert into THUCTAP.NHOMCONGVIEC (N_CV_ID,N_CV_TEN) values (4,'Mô t? các ch?c n?ng');
+Insert into THUCTAP.NHOMCONGVIEC (N_CV_ID,N_CV_TEN) values (5,'Xây d?ng giao di?n ');
+Insert into THUCTAP.NHOMCONGVIEC (N_CV_ID,N_CV_TEN) values (6,'Ki?m th? ?ánh gia');
+Insert into THUCTAP.NHOMCONGVIEC (N_CV_ID,N_CV_TEN) values (7,'Báo cáo');
+Insert into THUCTAP.NHOMCONGVIEC (N_CV_ID,N_CV_TEN) values (8,'Demo');
+-- Unable to render TRIGGER DDL for object THUCTAP.NHOMCONGVIEC_TRG with DBMS_METADATA attempting internal generator.
+CREATE TRIGGER NHOMCONGVIEC_TRG 
+BEFORE INSERT ON NHOMCONGVIEC 
+FOR EACH ROW 
+BEGIN
+  <<COLUMN_SEQUENCES>>
+  BEGIN
+    IF INSERTING AND :NEW.N_CV_ID IS NULL THEN
+      SELECT NHOMCONGVIEC_SEQ.NEXTVAL INTO :NEW.N_CV_ID FROM SYS.DUAL;
+    END IF;
+  END COLUMN_SEQUENCES;
+END;
